@@ -1,9 +1,9 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-// console.log(galleryItems);
 
 const listEl = document.querySelector(".gallery");
+
 
 const renderList = (arr, container) =>{ 
     const markup = arr.map((item) => `<li class="gallery_item"> 
@@ -25,7 +25,7 @@ const renderList = (arr, container) =>{
 const imgGalleryOnClick = (event) => { 
     event.preventDefault();
 
- if (event.currentTarget === event.target) {
+ if (event.target.nodeName === "img") {
     return;
  }
     const clickedImg = event.target;
@@ -54,22 +54,22 @@ const modalInstance = basicLightbox.create(`
 `)
     modalInstance.show()
 
-    listEl.addEventListener("keydown", (event) => {
-
+    const handlerEsc = (event) => {
+     
         if (event.code === "Escape") {
-            modalInstance.close()
+            modalInstance.close();
         }
 
-    });
+    };
 
-    listEl.removeEventListener("keydown", listener, false);
-    
+    listEl.addEventListener("keydown", handlerEsc, {once: true});
+  
     const containerModal = document.querySelector(".modal");
     containerModal.style.width = `${90}%`;   
     
 }
 
-
-
 renderList(galleryItems, listEl);
 listEl.addEventListener("click", imgGalleryOnClick);
+
+

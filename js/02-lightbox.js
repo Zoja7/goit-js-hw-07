@@ -22,33 +22,13 @@ const renderList = (arr, container) =>{
 
 renderList(galleryItems, listEl);
 
-const imgGalleryOnClick = (event) => {
-    event.preventDefault();
-
-    if (event.currentTarget === event.target) {
-        return;
-    }
-    
-    const clickedImg = event.target;
-    const chosenImgSource = clickedImg.closest("a").getAttribute("href");
-
-    const galleryItem = galleryItems.find(item => item.original === chosenImgSource);
-
-    if (galleryItem) {
-        console.log(galleryItem.original);
-    }
-
-
-      let gallery = new SimpleLightbox('.gallery a', {
+ const gallery = new SimpleLightbox('.gallery a', {
         captions: true,
         captionType: 'attr', 
         captionsData: 'alt', 
         animationSpeed: 250,
-    });
+});
 
  
-}
-
-listEl.addEventListener("click", imgGalleryOnClick);
 
 

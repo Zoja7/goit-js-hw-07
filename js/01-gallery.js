@@ -25,7 +25,7 @@ const renderList = (arr, container) =>{
 const imgGalleryOnClick = (event) => { 
     event.preventDefault();
 
- if (event.target.nodeName === "img") {
+ if (event.target.nodeName === "Img") {
     return;
  }
     const clickedImg = event.target;
@@ -38,7 +38,7 @@ const imgGalleryOnClick = (event) => {
         console.log(galleryItem.original); 
     }
 
-    // import * as basicLightbox from 'basiclightbox'//
+    
 
 const modalInstance = basicLightbox.create(`
      <div class="modal"> 
@@ -47,7 +47,7 @@ const modalInstance = basicLightbox.create(`
                 src="${galleryItem.original}" 
                 class="gallery__image"
                 data-source="large-image.jpg"
-                alt="Image description";
+                alt="Image description"
             />
         </li>
      </div>
@@ -58,14 +58,16 @@ const modalInstance = basicLightbox.create(`
      
         if (event.code === "Escape") {
             modalInstance.close();
-        }
 
+            listEl.removeEventListener("keydown", handlerEsc);
+        }
+        
     };
 
-    listEl.addEventListener("keydown", handlerEsc, {once: true});
+    listEl.addEventListener("keydown", handlerEsc);
   
     const containerModal = document.querySelector(".modal");
-    containerModal.style.width = `${90}%`;   
+    containerModal.style.width = `90%`;   
     
 }
 

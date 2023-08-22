@@ -46,8 +46,8 @@ const modalInstance = basicLightbox.create(`
             <img 
                 src="${galleryItem.original}" 
                 class="gallery__image"
-                data-source="large-image.jpg"
-                alt="Image description"
+                data-source="${galleryItem.original}"
+                alt="${galleryItem.description}"
             />
         </li>
      </div>

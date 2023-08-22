@@ -25,11 +25,12 @@ const renderList = (arr, container) =>{
 const imgGalleryOnClick = (event) => { 
     event.preventDefault();
 
- if (event.target.nodeName === "Img") {
+ if (event.target.nodeName !== "IMG") {
     return;
  }
     const clickedImg = event.target;
-    const chosenImgSource = clickedImg.dataset.source;
+    // const chosenImgSource = clickedImg.dataset.source;
+    const chosenImgSource = clickedImg.getAttribute("data-source");
 
     const galleryItem = galleryItems
         .find(item => item.original === chosenImgSource);
@@ -38,15 +39,13 @@ const imgGalleryOnClick = (event) => {
         console.log(galleryItem.original); 
     }
 
-    
-
 const modalInstance = basicLightbox.create(`
      <div class="modal"> 
          <li class="gallery_item">
             <img 
                 src="${galleryItem.original}" 
                 class="gallery__image"
-                data-source="${galleryItem.original}"
+                data-source=""
                 alt="${galleryItem.description}"
             />
         </li>
@@ -58,7 +57,6 @@ const modalInstance = basicLightbox.create(`
      
         if (event.code === "Escape") {
             modalInstance.close();
-
             listEl.removeEventListener("keydown", handlerEsc);
         }
         
